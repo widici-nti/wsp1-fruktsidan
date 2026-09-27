@@ -10,3 +10,8 @@ gem 'webrick'
 gem 'sinatra-contrib'
 gem 'awesome_print'
 gem 'debug'
+
+group :development do
+  gem 'rubocop'
+  gem 'ruby-lsp'
+end

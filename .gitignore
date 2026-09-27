@@ -3,6 +3,10 @@ Gemfile.lock
 db/*.db
 db/*.sqlite
 
+bin
+vendor
+.direnv
+
 # Mac
 .DS_Store
 .DocumentRevisions-V100
