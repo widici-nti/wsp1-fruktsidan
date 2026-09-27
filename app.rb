@@ -1,25 +1,30 @@
 require 'debug'
-require "awesome_print"
+require 'awesome_print'
 
 class App < Sinatra::Base
-    register Sinatra::Reloader
+  register Sinatra::Reloader
 
-    def db
-      return @db if @db
+  def db
+    return @db if @db
 
-      @db = SQLite3::Database.new(DB_PATH)
-      @db.results_as_hash = true
+    @db = SQLite3::Database.new(DB_PATH)
+    @db.results_as_hash = true
 
-      return @db
-    end
+    @db
+  end
 
-    get '/fruits' do
-      @fruits = db.execute('SELECT * FROM products')
-      erb(:"fruits/index")
-    end
+  get '/fruits' do
+    @fruits = db.execute('SELECT * FROM products')
+    erb(:'fruits/index')
+  end
 
-    get '/fruits/:id' do | id |
-      @fruit = db.execute('SELECT * FROM products WHERE id=?',id).first
-    erb(:"fruits/show")
+  get '/fruits/:id' do |id|
+    @fruit = db.execute('SELECT * FROM products WHERE id=?', id).first
+    erb(:'fruits/show')
+  end
+
+  post '/fruits/:id/delete' do |id|
+    db.execute('DELETE FROM products WHERE id=?', id).first
+    redirect('/fruits')
   end
 end
