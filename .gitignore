@@ -6,6 +6,7 @@ db/*.sqlite
 bin
 vendor
 .direnv
+.pre-commit-config.yml
 
 # Mac
 .DS_Store
