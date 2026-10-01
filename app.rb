@@ -18,6 +18,15 @@ class App < Sinatra::Base
     erb(:'fruits/index')
   end
 
+  get '/fruits/new' do
+    erb(:'fruits/new')
+  end
+
+  post '/fruits' do
+    db.execute('INSERT INTO products (name, description, tastiness) VALUES (?, ?, ?)', params.values)
+    redirect('/fruits')
+  end
+
   get '/fruits/:id' do |id|
     @fruit = db.execute('SELECT * FROM products WHERE id=?', id).first
     erb(:'fruits/show')
