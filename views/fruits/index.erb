@@ -10,6 +10,10 @@
       <form action="/fruits/<%=fruit["id"]%>/delete" method="post">
         <input type="submit" value="Ta bort">
       </form>
+
+      <form action="/fruits/<%=fruit["id"]%>/edit" method="get">
+        <input type="submit" value="Redigera">
+      </form>
     </li>
   <% end %>
 </ul>
