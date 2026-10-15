@@ -21,13 +21,21 @@ class App < Sinatra::Base
     @category = db.execute('SELECT * FROM categories WHERE id=?', id).first
   end
 
-  get '/fruits' do
+  def fruits
     @fruits = db.execute('SELECT * FROM products')
+  end
+
+  def categories
+    @categories = db.execute('SELECT * FROM categories')
+  end
+
+  get '/fruits' do
+    fruits
     erb(:'fruits/index')
   end
 
   get '/fruits/new' do
-    @categories = db.execute('SELECT * FROM categories')
+    categories
     erb(:'fruits/new')
   end
 
@@ -38,11 +46,12 @@ class App < Sinatra::Base
 
   get '/fruits/:id/edit' do |id|
     fruit id
+    categories
     erb(:'fruits/edit')
   end
 
   post '/fruits/:id/update' do
-    db.execute('UPDATE products SET name=?, description=?, tastiness=? WHERE id=?', params.values)
+    db.execute('UPDATE products SET name=?, description=?, tastiness=?, category_id=? WHERE id=?', params.values)
     redirect(:'/fruits')
   end
 
