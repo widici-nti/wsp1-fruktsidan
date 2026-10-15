@@ -17,6 +17,10 @@ class App < Sinatra::Base
     @fruit = db.execute('SELECT * FROM products WHERE id=?', id).first
   end
 
+  def category(id)
+    @category = db.execute('SELECT * FROM categories WHERE id=?', id).first
+  end
+
   get '/fruits' do
     @fruits = db.execute('SELECT * FROM products')
     erb(:'fruits/index')
@@ -24,7 +28,6 @@ class App < Sinatra::Base
 
   get '/fruits/new' do
     @categories = db.execute('SELECT * FROM categories')
-    ap @categories
     erb(:'fruits/new')
   end
 
@@ -45,6 +48,7 @@ class App < Sinatra::Base
 
   get '/fruits/:id' do |id|
     fruit id
+    category id
     erb(:'fruits/show')
   end
 
