@@ -23,11 +23,13 @@ class App < Sinatra::Base
   end
 
   get '/fruits/new' do
+    @categories = db.execute('SELECT * FROM categories')
+    ap @categories
     erb(:'fruits/new')
   end
 
   post '/fruits' do
-    db.execute('INSERT INTO products (name, description, tastiness) VALUES (?, ?, ?)', params.values)
+    db.execute('INSERT INTO products (name, description, tastiness, category_id) VALUES (?, ?, ?, ?)', params.values)
     redirect(:'/fruits')
   end
 

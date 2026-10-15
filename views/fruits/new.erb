@@ -4,5 +4,10 @@
   <label>Frukt <input type="text" name="name"></label>
   <label>Beskrivning <input type="text" name="description"></label>
   <label>Smakpoäng <input type="number" name="tastiness"></label>
+  <select name="category_id">
+    <% @categories.each do |category| %>
+      <option value="<%= category["id"] %>"><%= category["name"] %></option>
+    <% end %>
+  </select>
   <input type="submit" value="Spara">
 </form>
