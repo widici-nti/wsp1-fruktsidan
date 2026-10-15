@@ -65,4 +65,9 @@ class App < Sinatra::Base
     db.execute('DELETE FROM products WHERE id=?', id).first
     redirect('/fruits')
   end
+
+  get 'categories' do
+    categories
+    erb(:'categories/index')
+  end
 end
