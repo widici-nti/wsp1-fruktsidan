@@ -3,7 +3,7 @@
 <ul>
   <% @fruits.each do |fruit| %>
     <li>
-      <a class="delete" href="/fruits/<%= fruit["id"]%>">
+      <a href="/fruits/<%= fruit["id"]%>">
         <%= fruit["name"] %>
       </a>
 

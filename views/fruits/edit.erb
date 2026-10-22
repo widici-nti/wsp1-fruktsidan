@@ -6,7 +6,7 @@
   <label>Smakpoäng <input type="number" min="0" max="10" name="tastiness" value="<%=@fruit["tastiness"]%>"></label><br />
   <label>Kategori <select name="category_id">
     <% @categories.each do |category| %>
-      <option value="<%= category["id"] %>" <%= "selected" if category == @category%>><%= category["name"] %></option>
+      <option value="<%= category["id"] %>" <%= "selected" if category == @curr_category%>><%= category["name"] %></option>
     <% end %>
   </select></label><br />
   <input type="submit" value="Spara">

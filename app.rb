@@ -14,28 +14,28 @@ class App < Sinatra::Base
   end
 
   def fruit(id)
-    @fruit = db.execute('SELECT * FROM products WHERE id=?', id).first
+    db.execute('SELECT * FROM products WHERE id=?', id).first
   end
 
   def category(id)
-    @category = db.execute('SELECT * FROM categories WHERE id=?', id).first
+    db.execute('SELECT * FROM categories WHERE id=?', id).first
   end
 
   def fruits
-    @fruits = db.execute('SELECT * FROM products')
+    db.execute('SELECT * FROM products')
   end
 
   def categories
-    @categories = db.execute('SELECT * FROM categories')
+    db.execute('SELECT * FROM categories')
   end
 
   get '/fruits' do
-    fruits
+    @fruits = fruits
     erb(:'fruits/index')
   end
 
   get '/fruits/new' do
-    categories
+    @categories = categories
     erb(:'fruits/new')
   end
 
@@ -45,9 +45,9 @@ class App < Sinatra::Base
   end
 
   get '/fruits/:id/edit' do |id|
-    fruit id
-    category @fruit["category_id"]
-    categories
+    @fruit = fruit id
+    @curr_category = category @fruit["category_id"]
+    @categories = categories
     erb(:'fruits/edit')
   end
 
@@ -57,8 +57,8 @@ class App < Sinatra::Base
   end
 
   get '/fruits/:id' do |id|
-    fruit id
-    category @fruit["category_id"]
+    @fruit = fruit id
+    @category = category @fruit["category_id"]
     erb(:'fruits/show')
   end
 
@@ -68,12 +68,12 @@ class App < Sinatra::Base
   end
 
   get '/categories' do
-    categories
+    @categories = categories
     erb(:'categories/index')
   end
 
   get '/categories/:id' do |id|
-    category id
+    @categories = category id
     erb(:'categories/show')
   end
 end
