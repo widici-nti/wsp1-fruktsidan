@@ -1,7 +1,7 @@
 <h2>Mer info om: <%= @fruit['name'] %></h2>
 
 <p>
-   <i>Smakpoäng:</i> <%= "★" * @fruit["tastiness"] %> (<%= @fruit["tastiness"]%>p)
+   <i>Smakpoäng:</i> <%= "★" * @fruit["tastiness"] %><%= "☆" * (10 - @fruit["tastiness"])%> (<%= @fruit["tastiness"]%>/10)
 </p>
 
 <p>

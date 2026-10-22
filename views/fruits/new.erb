@@ -3,7 +3,7 @@
 <form action="/fruits" method="post">
   <label>Frukt <input type="text" name="name"></label><br />
   <label>Beskrivning <input type="text" name="description"></label><br />
-  <label>Smakpoäng <input type="number" name="tastiness"></label><br />
+  <label>Smakpoäng <input type="number" min="0" max="10" name="tastiness"></label><br />
   <label>Kategori <select name="category_id">
     <% @categories.each do |category| %>
       <option value="<%= category["id"] %>"><%= category["name"] %></option>
