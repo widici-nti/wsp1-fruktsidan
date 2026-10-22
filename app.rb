@@ -46,6 +46,7 @@ class App < Sinatra::Base
 
   get '/fruits/:id/edit' do |id|
     fruit id
+    category @fruit["category_id"]
     categories
     erb(:'fruits/edit')
   end
@@ -57,7 +58,7 @@ class App < Sinatra::Base
 
   get '/fruits/:id' do |id|
     fruit id
-    category id
+    category @fruit["category_id"]
     erb(:'fruits/show')
   end
 
