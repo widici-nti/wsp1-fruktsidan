@@ -66,8 +66,13 @@ class App < Sinatra::Base
     redirect('/fruits')
   end
 
-  get 'categories' do
+  get '/categories' do
     categories
     erb(:'categories/index')
+  end
+
+  get '/categories/:id' do |id|
+    category id
+    erb(:'categories/show')
   end
 end
